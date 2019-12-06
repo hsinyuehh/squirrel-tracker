@@ -21,5 +21,5 @@ from sightings import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sightings/', include('sightings.urls')),
-    path('map/', views.squirrel_map),
+    path('map/', views.sighting_map),
 ]
