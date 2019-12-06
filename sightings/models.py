@@ -1,8 +1,6 @@
 from django.db import models
-from django.db import models
 from django.utils.translation import gettext as _
 
-# Create your models here.
 class Squirrel(models.Model):
     longitude = models.FloatField(
         help_text=_('Longitude'),
@@ -161,3 +159,6 @@ class Squirrel(models.Model):
         help_text=_('Runs From'),
         default=False,
     )
+
+    def __str__(self):
+        return self.squirrel_id
