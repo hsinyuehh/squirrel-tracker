@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    h1 { color: #f4fff8; }
     body {
-        background: url('https://i2.wp.com/anifablog.com/wp-content/uploads/2017/04/autumn-squirrel-susan-schwarting.jpg?w=893&ssl=1') no-repeat center center fixed;
+        background: url('https://3.bp.blogspot.com/-EEG2FUZM90g/WBMzGDYtgxI/AAAAAAAAAe8/ircEGcYJk5A_13RjUBSn1rOhjPWyG8noACLcB/s1600/grey-squirrel-on-grass.jpg') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
@@ -18,6 +19,7 @@
         margin-left: 100px;
         margin-right: 400px;
         margin-top: 100px;
+        color: #ffffff;
             }
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -27,7 +29,8 @@
 </head>
 <body>
 <div class="container">
-    <h1>Create a new sighting</h1>
+    <h1>Create a New Squirrel Sighting</h1>
+    <hr style="border:0;background-color:#f4fff8;height:1px;">
     <form action="/sightings/add/" method="post">
       {% csrf_token %}
       {{ form }}

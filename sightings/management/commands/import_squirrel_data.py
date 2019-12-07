@@ -46,8 +46,8 @@ class Command(BaseCommand):
                 location_ = Squirrel.UNKNOWN
 
             p = Squirrel(
-                latitude=float(item['X']),
-                longitude=float(item['Y']),
+                latitude=float(item['Y']),
+                longitude=float(item['X']),
                 squirrel_id=item['Unique Squirrel ID'],
                 shift=shift_,
                 date=datetime.date(int(item['Date'][-4:]), int(item['Date'][:2]), int(item['Date'][2:4])),

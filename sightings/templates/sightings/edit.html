@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Squirrel List</title>
+  <title>Edit Squirrel</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     h1 { color: #f4fff8; }
     body {
-        background: url("https://3.bp.blogspot.com/-EEG2FUZM90g/WBMzGDYtgxI/AAAAAAAAAe8/ircEGcYJk5A_13RjUBSn1rOhjPWyG8noACLcB/s1600/grey-squirrel-on-grass.jpg") no-repeat center center fixed;
+        background: url('https://3.bp.blogspot.com/-EEG2FUZM90g/WBMzGDYtgxI/AAAAAAAAAe8/ircEGcYJk5A_13RjUBSn1rOhjPWyG8noACLcB/s1600/grey-squirrel-on-grass.jpg') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
@@ -16,17 +16,16 @@
 
     .container{
         position: relative;
-        margin-left: 200px;
+        margin-l eft: 100px;
         margin-right: 400px;
-        margin-top: 150px;
+        margin-top: 100px;
+        color: #ffffff;
             }
-
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/ddjquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 
@@ -36,13 +35,16 @@
      {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
     {% endfor %}
   {% endif %}
-  <h1>List of All Squirrel Sightings</h1>
-  <a href="/sightings/add" class="btn btn-info" role="button">Add</a>
-  <div class="list-group">
-        {% for sighting in sightings %}
-	<a href="/sightings/{{sighting.squirrel_id}}/" class="list-group-item list-group-item-action">{{sighting.squirrel_id}}</a>
-        {% endfor %}
-  </div>
+
+  <h1>Details of Squirrel {{sighting.squirrel_id}}</h1>
+  <hr style="border:0;background-color:#f4fff8;height:1px;">
+  <form action="/sightings/{{sighting.squirrel_id}}/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary">Update</button>
+    <input class="btn btn-default btn-danger" name="delete" type="submit" value="Delete"/>
+    <a href="/sightings/" class="btn btn-info" role="button">Back to List</a>
+</form>
 </div>
 
 </body>
