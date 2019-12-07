@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Squirrel List</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/ddjquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  {% if messages %}
+    {% for message in messages %}
+     {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+  {% endif %}
+  <h1>List of All Squirrel Sightings</h1>
+  <a href="/sightings/add" class="btn btn-info" role="button">Add</a>
+  <div class="list-group">
+        {% for sighting in sightings %}
+	<a href="/sightings/{{sighting.squirrel_id}}/" class="list-group-item list-group-item-action">{{sighting.squirrel_id}}</a>
+        {% endfor %}
+  </div>
+</div>
+
+</body>
+</html>
