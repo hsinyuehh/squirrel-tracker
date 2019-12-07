@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Squirrel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+        background: url('https://i2.wp.com/anifablog.com/wp-content/uploads/2017/04/autumn-squirrel-susan-schwarting.jpg?w=893&ssl=1') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        }
+
+    .container{
+        position: relative;
+        margin-left: 100px;
+        margin-right: 400px;
+        margin-top: 100px;
+            }
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Create a new sighting</h1>
+    <form action="/sightings/add/" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="btn btn-primary">Create</button>
+      <a href="/sightings/" class="btn btn-info" role="button">Back to List</a>
+    </form>
+</div>
+</body>
+</html>

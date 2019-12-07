@@ -26,12 +26,12 @@ def sighting_map(request):
 
 def add_sighting(request):
     if request.method == 'POST':
-        form = SquirrelForm(request.POST)
+        form = SightingForm(request.POST)
         if form.is_valid():
             new_sighting = form.save()
             return redirect('/sightings/')
     else:
-        form = SquirrelForm()
+        form = SightingForm()
 
     return render(request, 'sightings/add.html', {'form': form.as_p()})
 
@@ -43,14 +43,14 @@ def sighting_details(request, squirrel_id):
         return redirect('/sightings/')
     elif request.method == 'POST':
         sighting = Squirrel.objects.get(squirrel_id=squirrel_id)
-        form = SquirrelForm(request.POST, instance=sighting)
+        form = SightingForm(request.POST, instance=sighting)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully Update!')
             return redirect(f'/sightings/{squirrel_id}/')
     elif request.method == 'GET':
         sighting = Squirrel.objects.get(squirrel_id=squirrel_id)
-        form = SquirrelForm(instance=sighting)
+        form = SightingForm(instance=sighting)
         context = {
             'form': form.as_p(),
             'sighting': sighting,
