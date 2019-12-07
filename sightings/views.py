@@ -57,6 +57,9 @@ def sighting_details(request, squirrel_id):
         }
         return render(request, 'sightings/edit.html', context)
 
+def stats(request):
+    df=pd.DataFrame(Squirrel.objects.all().values())
+    temp = df['fur_color'].value_counts().values
 
-
-
+    return HttpResponse(f'The number of squirrels with different fur colors:<br>\
+     Gray: {temp[0]}; Cinnamon: {temp[1]}; Black: {temp[2]}; unknown: {temp[3]}')
