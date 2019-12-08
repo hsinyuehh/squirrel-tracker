@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import redirect
 from django.contrib import messages
 
@@ -58,8 +58,27 @@ def sighting_details(request, squirrel_id):
         return render(request, 'sightings/edit.html', context)
 
 def stats(request):
-    df=pd.DataFrame(Squirrel.objects.all().values())
-    temp = df['fur_color'].value_counts().values
 
-    return HttpResponse(f'The number of squirrels with different fur colors:<br>\
-     Gray: {temp[0]}; Cinnamon: {temp[1]}; Black: {temp[2]}; unknown: {temp[3]}')
+    black = Squirrel.objects.filter(color='Black').count()
+    cinnamon = Squirrel.objects.filter(color='Cinnamon').count()
+    gray = Squirrel.objects.filter(color='Gray').count()
+    adult = Squirrel.objects.filter(age='Adult').count()
+    juvenile = Squirrel.objects.filter(age='Juvenile').count()
+    chasing = Squirrel.objects.filter(chasing=True).count()
+    climbing = Squirrel.objects.filter(climbing=True).count()
+    eating = Squirrel.objects.filter(eating=True).count()
+    foraging = Squirrel.objects.filter(foraging=True).count()
+    context = {
+        'black': black,
+        'cinnamon': cinnamon,
+        'gray': gray,
+        'adult': adult,
+        'juvenile': juvenile,
+        'eating': eating,
+        'foraging': foraging,
+        'chasing': chasing,
+        'climbing': climbing,
+    }
+    return render(request, 'sightings/stats.html', context)
+
+
