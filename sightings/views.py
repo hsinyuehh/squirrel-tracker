@@ -18,7 +18,7 @@ def all_sightings(request):
     return render(request, 'sightings/all.html', context)
 
 def sighting_map(request):
-    sightings = Squirrel.objects.all()
+    sightings = Squirrel.objects.all()[:100]
     context = {
         'sightings': sightings,
     }
@@ -39,14 +39,14 @@ def sighting_details(request, squirrel_id):
     if request.method == 'POST' and 'delete' in request.POST:
         sighting = Squirrel.objects.get(squirrel_id=squirrel_id)
         sighting.delete()
-        messages.success(request, 'Successfully Delete!')
+        messages.success(request, 'This sighting has been successfully deleted!')
         return redirect('/sightings/')
     elif request.method == 'POST':
         sighting = Squirrel.objects.get(squirrel_id=squirrel_id)
         form = SightingForm(request.POST, instance=sighting)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully Update!')
+            messages.success(request, 'This sighting has been successfully updated!')
             return redirect(f'/sightings/{squirrel_id}/')
     elif request.method == 'GET':
         sighting = Squirrel.objects.get(squirrel_id=squirrel_id)

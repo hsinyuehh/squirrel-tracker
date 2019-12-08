@@ -4,31 +4,133 @@
   <title>Squirrel List</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     h1 { color: #f4fff8; }
+    h2 { color: #f4fff8; }
     body {
         background: url("https://3.bp.blogspot.com/-EEG2FUZM90g/WBMzGDYtgxI/AAAAAAAAAe8/ircEGcYJk5A_13RjUBSn1rOhjPWyG8noACLcB/s1600/grey-squirrel-on-grass.jpg") no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
         -o-background-size: cover;
+        position:absolute；
+        z-index:10;
         }
-
+    .text1 {
+	    font-size: 48pt;
+        font-style:italic;
+        }
+    .text2 {
+	    font-size: 24pt;
+        font-style:italic;
+        }
     .container{
-        position: relative;
+        position:absolute；
         margin-left: 200px;
         margin-right: 400px;
-        margin-top: 150px;
+        margin-top: 400px;
+        z-index:100;
             }
+    .list-group{
+        position:absolute；
+        z-index:-1;
+    }
+
+    .btn {
+        border: 1px solid white;
+        -webkit-box-shadow: inset 0 1px 2px white;
+        -moz-box-shadow: inset 0 1px 2px white;
+        box-shadow: inset 0 1px 2px white;
+        background: white;
+        background-image: url('https://www.publicdomainpictures.net/pictures/30000/velka/plain-white-background.jpg');
+        background-size: 100%;
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, white), color-stop(100%, whitesmoke));
+        background-image: -webkit-linear-gradient(top, white, whitesmoke);
+        background-image: -moz-linear-gradient(top, white, whitesmoke);
+        background-image: -o-linear-gradient(top, white, whitesmoke);
+        background-image: linear-gradient(top, white, whitesmoke);
+            }
+
+    #navbar {
+        overflow: hidden;
+        background-color: #2a2a2a;
+        position:absolute；
+        z-index:10000;
+            }
+
+    #navbar a {
+        float: right;
+        display: block;
+        color: whitesmoke;
+        text-align: center;
+        padding: 16px 16px;
+        text-decoration: none;
+        font-size: 24px;
+        position:absolute；
+        z-index:10000;
+            }
+
+    #navbar a:hover {
+        background-color: whitesmoke;
+        color: black;
+        position:absolute；
+        z-index:10000;
+            }
+
+    #navbar a.active {
+        background-color: whitesmoke;
+        color: black;
+        position:absolute；
+        z-index:10000;
+            }
+
+    .content {
+        padding: 16px;
+            }
+
+    .sticky {
+        position: fixed;
+        z-index:10000;
+        top: 0;
+        width: 100%;
+            }
+
+    .sticky + .content {
+        padding-top: 60px;
+        position:absolute；
+        z-index:10000;
+            }
+
+
 
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/ddjquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
+
 <body>
+
+<div id="navbar">
+  <a href="/map/">Map</a>
+  <a class="active" href="/sightings/">Home</a>
+</div>
+
+<div class="content">
+  <br />
+  <br />
+  <br />
+  <p>
+  <h1 class="text1">&nbsp;&nbsp;Squirrel Tracker</h1>
+    <br />
+    <br />
+    <h2 class="text2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——2018 Central Park Squirrel Census data</h2>
+    <br />
+</div>
 
 <div class="container">
   {% if messages %}
@@ -36,14 +138,33 @@
      {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
     {% endfor %}
   {% endif %}
+
   <h1>List of All Squirrel Sightings</h1>
-  <a href="/sightings/add" class="btn btn-info" role="button">Add</a>
+
+  <a href="/sightings/add">
+      <button class="btn"><i class="fa fa-plus"></i>Add</button>
+  </a>
+
   <div class="list-group">
-        {% for sighting in sightings %}
-	<a href="/sightings/{{sighting.squirrel_id}}/" class="list-group-item list-group-item-action">{{sighting.squirrel_id}}</a>
-        {% endfor %}
+      {% for sighting in sightings %}
+          <a href="/sightings/{{sighting.squirrel_id}}/" class="list-group-item list-group-item-action">{{sighting.squirrel_id}}</a>
+      {% endfor %}
   </div>
 </div>
 
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
 </body>
 </html>
