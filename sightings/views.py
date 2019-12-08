@@ -18,7 +18,7 @@ def all_sightings(request):
     return render(request, 'sightings/all.html', context)
 
 def sighting_map(request):
-    sightings = Squirrel.objects.all()
+    sightings = Squirrel.objects.all()[:100]
     context = {
         'sightings': sightings,
     }
