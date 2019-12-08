@@ -6,7 +6,6 @@ from django.contrib import messages
 from .models import Squirrel
 from .forms import SightingForm
 from datetime import date, datetime
-import json
 import pandas as pd
 import numpy as np
 
@@ -59,9 +58,9 @@ def sighting_details(request, squirrel_id):
 
 def stats(request):
 
-    black = Squirrel.objects.filter(color='Black').count()
-    cinnamon = Squirrel.objects.filter(color='Cinnamon').count()
-    gray = Squirrel.objects.filter(color='Gray').count()
+    black = Squirrel.objects.filter(fur_color='Black').count()
+    cinnamon = Squirrel.objects.filter(fur_color='Cinnamon').count()
+    gray = Squirrel.objects.filter(fur_color='Gray').count()
     adult = Squirrel.objects.filter(age='Adult').count()
     juvenile = Squirrel.objects.filter(age='Juvenile').count()
     chasing = Squirrel.objects.filter(chasing=True).count()
@@ -80,5 +79,6 @@ def stats(request):
         'climbing': climbing,
     }
     return render(request, 'sightings/stats.html', context)
+
 
 
