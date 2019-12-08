@@ -14,6 +14,7 @@ class Command(BaseCommand):
         path = options['path'][0]
         df = pd.DataFrame(Squirrel.objects.all().values())
         df.replace('other', '', inplace=True)
+        df.drop(columns='id')
         df['date'] = df['date'].apply(lambda x: x.strftime("%m%d%Y"))
         df.to_csv(path)
         self.stdout.write(self.style.SUCCESS(f'Successfully export data to {path}'))
