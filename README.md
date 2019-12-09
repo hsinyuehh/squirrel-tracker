@@ -3,7 +3,7 @@
 Team 80 Section 002
 ## Members: 
 James Yang, Xinyue Li
-##Uni: 
+## Uni: 
 jy3026, xl2917
 ## Description
 This is the final project of Columbia IEORE4501 Tools for Analytics course. 
