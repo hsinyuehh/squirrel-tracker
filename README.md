@@ -42,3 +42,4 @@ Located at: /sightings/stats.
 
 
 ## Link to server
+https://ieor-4501-tools.appspot.com/sightings/
