@@ -2,7 +2,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages
-
+import json
 from .models import Squirrel
 from .forms import SightingForm
 from datetime import date, datetime
@@ -51,7 +51,6 @@ def edit_sighting(request, squirrel_id):
             'sighting': sighting,
         }
         return render(request, 'sightings/edit.html', context)
-
 
 
 def age_color(df):
