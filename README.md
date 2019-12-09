@@ -3,7 +3,8 @@
 Team 80 Section 002
 ## Members: 
 James Yang, Xinyue Li
-Uni: jy3026, xl2917
+##Uni: 
+jy3026, xl2917
 ## Description
 This is the final project of Columbia IEORE4501 Tools for Analytics course. 
 We build an application that can import the 2018 Central Park Squirrel Census data and sightings map, allowing the public to add, update, and view squirrels data.
