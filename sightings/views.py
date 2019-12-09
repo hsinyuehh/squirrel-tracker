@@ -130,28 +130,24 @@ def age_color(df):
     return json.dumps(column_chart)
 
 def behavior_change(df):
-    date_running = df.groupby(['date', 'running'])['id'].count().reset_index()
-    date_chasing = df.groupby(['date', 'chasing'])['id'].count().reset_index()
-    date_climbing = df.groupby(['date', 'climbing'])['id'].count().reset_index()
-    date_eating = df.groupby(['date', 'eating'])['id'].count().reset_index()
-    date_foraging = df.groupby(['date', 'foraging'])['id'].count().reset_index()
+    ## foraging number
+    f = df[df['foraging'] == True].groupby('date').count()
+    ## Running number
+    r = df[df['running'] == True].groupby('date').count()
+    ## Climbing number
+    c = df[df['climbing'] == True].groupby('date').count()
+    ## Eating number
+    e = df[df['eating'] == True].groupby('date').count()
+    ## Chasing number
+    ch = df[df['chasing'] == True].groupby('date').count()
 
-    datelist = list(set(date_running['date']) & set(date_chasing['date']) & set(date_climbing['date']) & set(date_eating['date']) & set(date_foraging['date']))
-    datelist.sort()
-    run = list()
-    chase = list()
-    climb = list()
-    eat = list()
-    forage = list()
-
-    for i in datelist:
-        run.append(int(date_running[(date_running['date'] == i) & (date_running['running'] == True)]['id'].iloc[0]))
-        chase.append(int(date_chasing[(date_chasing['date'] == i) & (date_chasing['chasing'] == True)]['id'].iloc[0]))
-        climb.append(int(date_climbing[(date_climbing['date'] == i) & (date_climbing['climbing'] == True)]['id'].iloc[0]))
-        eat.append(int(date_eating[(date_eating['date'] == i) & (date_eating['eating'] == True)]['id'].iloc[0]))
-        forage.append(int(date_foraging[(date_foraging['date'] == i) & (date_foraging['foraging'] == True)]['id'].iloc[0]))
-
-    datelist = [date.strftime(i, "%Y-%m-%d") for i in datelist]
+    list_ = list(f.index)
+    datelist = [date.strftime(i, "%Y-%m-%d") for i in list_]
+    forage = [int(i) for i in list(f['foraging'].values)]
+    run = [int(i) for i in list(r['running'].values)]
+    climb = [int(i) for i in list(c['climbing'].values)]
+    eat =  [int(i) for i in list(e['eating'].values)]
+    chase = [int(i) for i in list(ch['chasing'].values)]
 
     line_chart = {
         'chart': {
@@ -180,8 +176,8 @@ def behavior_change(df):
             'name': 'Running',
             'data': run
         }, {
-            'name': 'Chasing',
-            'data': chase
+            'name': 'Foraging',
+            'data': forage
         }, {
             'name': 'Climbing',
             'data': climb
@@ -189,8 +185,8 @@ def behavior_change(df):
             'name': 'Eating',
             'data': eat
         }, {
-            'name': 'Foraging',
-            'data': forage
+            'name': 'Chasing',
+            'data': chase
         }]
     }
 
