@@ -1,7 +1,7 @@
 # Tools for Analytics Final Project: Squirrel Tracker
 ## Group Information
 Team 80 Section 002
-##Members: 
+## Members: 
 James Yang, Xinyue Li
 Uni: jy3026, xl2917
 ## Description
