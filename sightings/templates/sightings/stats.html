@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>General Stats about Squirrel Sightings</title>
+
+  <style>
+    .text1 {
+	    font-size: 48pt;
+        font-style:italic;
+            }
+    #navbar {
+        overflow: hidden;
+        background-color: #2a2a2a;
+        position:absolute；
+        z-index:10000;
+            }
+
+    #navbar a {
+        float: right;
+        display: block;
+        color: whitesmoke;
+        text-align: center;
+        padding: 16px 16px;
+        text-decoration: none;
+        font-size: 24px;
+        position:absolute；
+        z-index:10000;
+            }
+
+    #navbar a:hover {
+        background-color: whitesmoke;
+        color: black;
+        position:absolute；
+        z-index:10000;
+            }
+
+    #navbar a.active {
+        background-color: whitesmoke;
+        color: black;
+        position:absolute；
+        z-index:10000;
+            }
+
+    .content {
+        padding: 16px;
+            }
+
+    .sticky {
+        position: fixed;
+        z-index:10000;
+        top: 0;
+        width: 100%;
+            }
+
+    .sticky + .content {
+        padding-top: 60px;
+        position:absolute；
+        z-index:10000;
+            }
+
+    </style>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+  <div id="navbar">
+      <a class="active" href="/sightings/stats/">Stats</a>
+      <a href="/map/">Map</a>
+      <a href="/sightings/">Home</a>
+  </div>
+  <div class="w3-display-container" style="margin-bottom:40px">
+      <img src="https://3.bp.blogspot.com/-EEG2FUZM90g/WBMzGDYtgxI/AAAAAAAAAe8/ircEGcYJk5A_13RjUBSn1rOhjPWyG8noACLcB/s1600/grey-squirrel-on-grass.jpg" style="width:100%">
+      <div class="w3-display-left w3-container w3-amber w3-dark-grey w3-hide-small"
+       style="bottom:26%;opacity:0.8;width:50%">
+      <h1 class="text1">General Stats about </h1>
+      <h1 class="text1">&nbsp;&nbsp;&nbsp;&nbsp;Squirrel Sightings</h1>
+      </div>
+  </div>
+
+  <!--Row 1-->
+  <div class="w3-row w3-container" style="margin:50px 5px 50px">
+  <!--Row 1 Left Part-->
+  <div class="w3-half w3-container">
+      <div class="w3-topbar w3-border-dark-gray">
+      <div id="container" style="padding-top:12px"></div>
+      </div>
+  </div>
+
+  <!--Row 1 Right Part-->
+  <div class="w3-half w3-container">
+      <div class="w3-topbar w3-border-dark-gray">
+      <div id="container4" style="padding-top:12px"></div>
+      </div>
+  </div>
+  </div>
+
+
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script>
+    Highcharts.chart('container', {{column_chart|safe}});
+    Highcharts.chart('container4', {{line_chart|safe}});
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+  </script>
+</body>
+</html>

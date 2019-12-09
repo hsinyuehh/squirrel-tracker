@@ -54,4 +54,3 @@ class SightingForm(ModelForm):
             'type': 'date',
         })
     )
-
