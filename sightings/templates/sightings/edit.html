@@ -30,13 +30,13 @@
 <body>
 
 <div class="container">
-  {% if messages %}
-    {% for message in messages %}
-     {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
-    {% endfor %}
-  {% endif %}
+{#  {% if messages %}#}
+{#    {% for message in messages %}#}
+{#     {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}#}
+{#    {% endfor %}#}
+{#  {% endif %}#}
 
-  <h1>Details of Squirrel {{sighting.squirrel_id}}</h1>
+  <h1>Squirrel {{sighting.squirrel_id}} Information</h1>
   <hr style="border:0;background-color:#f4fff8;height:1px;">
   <form action="/sightings/{{sighting.squirrel_id}}/" method="post">
     {% csrf_token %}

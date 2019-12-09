@@ -130,24 +130,36 @@ def age_color(df):
 
     return json.dumps(column_chart)
 
-def date_age(df):
-    date_age = df.groupby(['date', 'age'])['id'].count().reset_index()
-    datelist = list(set(date_age['date']))
+def behavior_change(df):
+    date_running = df.groupby(['date', 'running'])['id'].count().reset_index()
+    date_chasing = df.groupby(['date', 'chasing'])['id'].count().reset_index()
+    date_climbing = df.groupby(['date', 'climbing'])['id'].count().reset_index()
+    date_eating = df.groupby(['date', 'eating'])['id'].count().reset_index()
+    date_foraging = df.groupby(['date', 'foraging'])['id'].count().reset_index()
+
+    datelist = list(set(date_running['date']) & set(date_chasing['date']) & set(date_climbing['date']) & set(date_eating['date']) & set(date_foraging['date']))
     datelist.sort()
-    adult = list()
-    juvenile = list()
+    run = list()
+    chase = list()
+    climb = list()
+    eat = list()
+    forage = list()
 
     for i in datelist:
-        adult.append(int(date_age[(date_age['date'] == i) & (date_age['age'] == 'Adult')]['id'].iloc[0]))
-        juvenile.append(int(date_age[(date_age['date'] == i) & (date_age['age'] == 'Juvenile')]['id'].iloc[0]))
+        run.append(int(date_running[(date_running['date'] == i) & (date_running['running'] == True)]['id'].iloc[0]))
+        chase.append(int(date_chasing[(date_chasing['date'] == i) & (date_chasing['chasing'] == True)]['id'].iloc[0]))
+        climb.append(int(date_climbing[(date_climbing['date'] == i) & (date_climbing['climbing'] == True)]['id'].iloc[0]))
+        eat.append(int(date_eating[(date_eating['date'] == i) & (date_eating['eating'] == True)]['id'].iloc[0]))
+        forage.append(int(date_foraging[(date_foraging['date'] == i) & (date_foraging['foraging'] == True)]['id'].iloc[0]))
 
     datelist = [date.strftime(i, "%Y-%m-%d") for i in datelist]
+
     line_chart = {
         'chart': {
             'type': 'line'
         },
         'title': {
-            'text': 'Squirrel Number vs Date'
+            'text': 'Time vs Number of Squirrels Behaviors'
         },
         'xAxis': {
             'categories': datelist
@@ -166,22 +178,43 @@ def date_age(df):
             }
         },
         'series': [{
-            'name': 'Adult',
-            'data': adult
+            'name': 'Running',
+            'data': run
         }, {
-            'name': 'Juvenile',
-            'data': juvenile
+            'name': 'Chasing',
+            'data': chase
+        }, {
+            'name': 'Climbing',
+            'data': climb
+        }, {
+            'name': 'Eating',
+            'data': eat
+        }, {
+            'name': 'Foraging',
+            'data': forage
         }]
     }
 
     return json.dumps(line_chart)
 
+
 def stats(request):
     df = pd.DataFrame(Squirrel.objects.all().values())
+
+    black = Squirrel.objects.filter(fur_color='Black').count()
+    cinnamon = Squirrel.objects.filter(fur_color='Cinnamon').count()
+    gray = Squirrel.objects.filter(fur_color='Gray').count()
+    ground_plane = Squirrel.objects.filter(location='Ground Plane').count()
+    above_ground = Squirrel.objects.filter(location='Above Ground').count()
     column_chart = age_color(df)
-    line_chart = date_age(df)
+    line_chart = behavior_change(df)
     context = {
-            'column_chart': column_chart,
-            'line_chart': line_chart,
-            }
-    return render(request,'sightings/stats.html',context)
+        'black': black,
+        'cinnamon': cinnamon,
+        'gray': gray,
+        'ground_plane': ground_plane,
+        'above_ground': above_ground,
+        'column_chart': column_chart,
+        'line_chart': line_chart,
+    }
+    return render(request, 'sightings/stats.html', context)

@@ -58,7 +58,28 @@
         position:absolute；
         z-index:10000;
             }
-
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size:11px;
+        color:#333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+            }
+    table.gridtable th {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #dedede;
+            }
+    table.gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #ffffff;
+            }
     </style>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -79,16 +100,48 @@
       </div>
   </div>
 
+
   <!--Row 1-->
-  <div class="w3-row w3-container" style="margin:50px 5px 50px">
+  <div class="w3-row w3-container" style="margin:50px 30px 50px">
   <!--Row 1 Left Part-->
+  <div class="w3-half w3-container">
+        <h3 align="center">Primary Fur Color Distribution</h3>
+        <!-- Table goes in the document BODY -->
+        <table class="gridtable" align="center">
+        <tr>
+            <th>Black</th><th>Cinnamon</th><th>Gray</th>
+        </tr>
+        <tr>
+            <td>{{black}}</td><td>{{cinnamon}}</td><td>{{gray}}</td>
+        </tr>
+        </table>
+  </div>
+
+  <!--Row 1 Right Part-->
+  <div class="w3-half w3-container">
+        <h3 align="center">Location Distribution</h3>
+        <!-- Table goes in the document BODY -->
+        <table class="gridtable" align="center">
+        <tr>
+            <th>Ground Plane</th><th>Above Ground</th>
+        </tr>
+        <tr>
+            <td>{{ground_plane}}</td><td>{{above_ground}}</td>
+        </tr>
+        </table>
+  </div>
+  </div>
+
+  <!--Row 2-->
+  <div class="w3-row w3-container" style="margin:50px 5px 50px">
+  <!--Row 2 Left Part-->
   <div class="w3-half w3-container">
       <div class="w3-topbar w3-border-dark-gray">
       <div id="container" style="padding-top:12px"></div>
       </div>
   </div>
 
-  <!--Row 1 Right Part-->
+  <!--Row 2 Right Part-->
   <div class="w3-half w3-container">
       <div class="w3-topbar w3-border-dark-gray">
       <div id="container4" style="padding-top:12px"></div>
