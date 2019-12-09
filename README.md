@@ -1,11 +1,12 @@
 # Tools for Analytics Final Project: Squirrel Tracker
 ## Group Information
-Team 80 Section 2
-Members: James Yang, Xinyue Li
+Team 80 Section 002
+##Members: 
+James Yang, Xinyue Li
 Uni: jy3026, xl2917
 ## Description
 This is the final project of Columbia IEORE4501 Tools for Analytics course. 
-We build an application that can import the 2018 Central Park Squirrel Census data and allow his team to add, update, and view squirrel data.
+We build an application that can import the 2018 Central Park Squirrel Census data and sightings map, allowing the public to add, update, and view squirrels data.
 
 ## Features
 ### 1 Management Commands
@@ -15,9 +16,6 @@ The file path should be specified at the command line after the name of the mana
 ```
 $ python manage.py import_squirrel_data /path/to/file.csv
 ```
-The squirrel census file can be downloaded here: 
-https://data.cityofnewyork.us/api/views/vfnx-vebw/rows.csv
-
 #### Export
 A command that can be used to export the data in CSV format. 
 The file path should be specified at the command line after the name of the management command as follows:
