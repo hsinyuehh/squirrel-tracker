@@ -1,10 +1,11 @@
-# Tools for Analytics
-## Final Project: Squirrel Tracker
+# Tools for Analytics Final Project: Squirrel Tracker
 ## Group Information
-Team 80  Members: James Yang, Xinyue Li
-## Summary
+Team 80 Section 2
+Members: James Yang, Xinyue Li
+Uni: jy3026, xl2917
+## Description
 This is the final project of Columbia IEORE4501 Tools for Analytics course. 
-Detailed Information: https://docs.google.com/document/d/1SPv3fMDKiemrR86rD-S9ecvI2npz3PljDzwCfxK2x5g/preview#
+We build an application that can import the 2018 Central Park Squirrel Census data and allow his team to add, update, and view squirrel data.
 
 ## Features
 ### 1 Management Commands
@@ -39,3 +40,6 @@ Located at: /sightings/add.
 #### Stats
 A view with general stats about the sightings.
 Located at: /sightings/stats.
+
+
+## Link to server
